@@ -13,7 +13,8 @@
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
-    "ios": "react-native run-ios"
+    "ios": "react-native run-ios",
+    "eslint": "eslint --ext js --ext jsx ."
   },
   "dependencies": {
     "@babel/runtime": "7.4.5",
@@ -22,6 +23,12 @@
     "react-native-config": "0.11.7"
   },
   "devDependencies": {
+    "@paralect/eslint-config": "1.0.0",
+    "babel-eslint": "10.0.1",
+    "eslint": "5.16.0",
+    "eslint-plugin-import": "2.17.3",
+    "eslint-plugin-jsx-a11y": "6.2.1",
+    "eslint-plugin-react": "7.13.0",
     "metro-react-native-babel-preset": "0.53.1"
   },
   "repository": {
