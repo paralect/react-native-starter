@@ -2,7 +2,7 @@
   "name": "react-native-starter",
   "version": "0.0.1",
   "description": "React-native starter",
-  "main": "src/app.js",
+  "main": "src/App.jsx",
   "private": false,
   "author": "Paralect",
   "license": "MIT",
@@ -17,12 +17,14 @@
     "eslint": "eslint --ext js --ext jsx ."
   },
   "dependencies": {
-    "@babel/runtime": "7.4.5",
     "i18n-js": "3.2.2",
     "react": "16.8.0",
     "react-native": "0.59.8",
     "react-native-config": "0.11.7",
-    "react-native-localize": "1.1.2"
+    "react-native-localize": "1.1.2",
+    "react-redux": "7.0.3",
+    "redux": "4.0.1",
+    "redux-thunk": "2.3.0"
   },
   "devDependencies": {
     "@paralect/eslint-config": "1.0.0",
