@@ -1,4 +1,15 @@
 {
+  "name": "react-native-starter",
+  "version": "0.0.1",
+  "description": "React-native starter",
+  "main": "src/app.js",
+  "private": false,
+  "author": "Paralect",
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "paralect"
+  ],
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
@@ -12,5 +23,8 @@
   "devDependencies": {
     "metro-react-native-babel-preset": "0.53.1"
   },
-  "private": true
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paralect/react-native-starter.git"
+  }
 }
