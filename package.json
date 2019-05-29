@@ -16,9 +16,10 @@
     "ios": "react-native run-ios"
   },
   "dependencies": {
+    "@babel/runtime": "7.4.5",
     "react": "16.8.0",
     "react-native": "0.59.8",
-    "@babel/runtime": "7.4.5"
+    "react-native-config": "0.11.7"
   },
   "devDependencies": {
     "metro-react-native-babel-preset": "0.53.1"
