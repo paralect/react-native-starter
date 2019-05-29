@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Config from 'react-native-config'
+import i18n from './src/i18n';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +16,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <Text>{i18n.t('example')}</Text>
         <Text>The app is in {Config.MODE} mode!</Text>
       </View>
     );

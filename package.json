@@ -18,9 +18,11 @@
   },
   "dependencies": {
     "@babel/runtime": "7.4.5",
+    "i18n-js": "3.2.2",
     "react": "16.8.0",
     "react-native": "0.59.8",
-    "react-native-config": "0.11.7"
+    "react-native-config": "0.11.7",
+    "react-native-localize": "1.1.2"
   },
   "devDependencies": {
     "@paralect/eslint-config": "1.0.0",
