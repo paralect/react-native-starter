@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
-import colors from '../../themes/colors';
-import metrics from '../../themes/metrics';
-
 export default StyleSheet.create({
   screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

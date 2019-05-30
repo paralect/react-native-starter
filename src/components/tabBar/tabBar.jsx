@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Image, Text } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Image,
+  Text,
+} from 'react-native';
 
 import images from '../../themes/images';
-import styles from './tabBar.styles.js';
+import styles from './tabBar.styles';
 
 class TabBar extends Component {
   static navigationOptions = {
     header: null,
   };
-
-  state = {
-    activeTab: 'HomeTab',
-  }
 
   onTabPress = (tab) => {
     const { navigation } = this.props;
@@ -23,13 +24,12 @@ class TabBar extends Component {
     } else {
       navigation.navigate(tab);
     }
-    this.setState({
-      activeTab,
-    });
   }
 
   render() {
-    const { activeTab } = this.state;
+    const { navigation } = this.props;
+    const { index } = navigation.state;
+    const activeTab = navigation.state.routes[index].key;
     return (
       <View style={styles.tabBarContainer}>
         <TouchableOpacity style={styles.tab} onPress={() => this.onTabPress('HomeTab')}>
@@ -40,7 +40,7 @@ class TabBar extends Component {
           />
           <Text style={styles.tabText}>Home</Text>
         </TouchableOpacity>
-        
+
         <TouchableOpacity style={styles.tab} onPress={() => this.onTabPress('ContactsTab')}>
           <Image
             style={styles.tabIcon}
@@ -49,9 +49,9 @@ class TabBar extends Component {
           />
           <Text style={styles.tabText}>Contacts</Text>
         </TouchableOpacity>
-        
+
         <TouchableOpacity style={styles.tab} onPress={() => this.onTabPress('ProfileTab')}>
-          <Image 
+          <Image
             style={styles.tabIcon}
             source={activeTab === 'ProfileTab' ? images.profileActive : images.profile}
             resizeMode="contain"
