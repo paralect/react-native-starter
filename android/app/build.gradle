@@ -3,7 +3,7 @@ apply plugin: "com.android.application"
 project.ext.envConfigFiles = [
         development: ".env.development",
         staging: ".env.staging",
-        production: ".env.production",
+        production: ".env",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
