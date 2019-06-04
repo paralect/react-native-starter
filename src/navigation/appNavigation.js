@@ -4,10 +4,12 @@ import {
   createAppContainer,
 } from 'react-navigation';
 
-import TabBar from '../components/tabBar';
 import ContactsScreen from '../screens/contactsScreen';
 import HomeScreen from '../screens/homeScreen';
 import ProfileScreen from '../screens/profileScreen';
+
+import metrics from '../themes/metrics';
+import colors from '../themes/colors';
 
 const Tabs = createBottomTabNavigator({
   HomeTab: HomeScreen,
@@ -15,7 +17,18 @@ const Tabs = createBottomTabNavigator({
   ProfileTab: ProfileScreen,
 }, {
   initialRouteName: 'HomeTab',
-  tabBarComponent: TabBar,
+  tabBarOptions: {
+    labelStyle: {
+      fontSize: 13,
+    },
+    activeTintColor: colors.activeFont,
+    style: {
+      paddingVertical: 5,
+      height: metrics.tabBarHeight,
+      borderTopColor: colors.border,
+      borderTopWidth: 1,
+    },
+  },
   lazy: true,
 });
 
