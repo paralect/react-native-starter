@@ -6,7 +6,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  tabBarIcon: {
-    width: 26,
+  text: {
+    fontSize: 16,
   },
 });

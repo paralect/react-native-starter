@@ -3,6 +3,7 @@ import {
   createBottomTabNavigator,
   createAppContainer,
 } from 'react-navigation';
+import { StyleSheet } from 'react-native';
 
 import ContactsScreen from '../screens/contactsScreen';
 import HomeScreen from '../screens/homeScreen';
@@ -26,7 +27,7 @@ const Tabs = createBottomTabNavigator({
       paddingVertical: 5,
       height: metrics.tabBarHeight,
       borderTopColor: colors.border,
-      borderTopWidth: 1,
+      borderTopWidth: StyleSheet.hairlineWidth,
     },
   },
   lazy: true,

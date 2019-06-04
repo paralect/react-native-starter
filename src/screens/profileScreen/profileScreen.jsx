@@ -10,8 +10,6 @@ class HomeScreen extends Component {
     tabBarIcon: ({ focused }) => (
       <Image
         source={focused ? images.profileActive : images.profile}
-        style={styles.tabBarIcon}
-        resizeMode="contain"
       />
     ),
   })
@@ -19,7 +17,7 @@ class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.screen}>
-        <Text>Profile Screen</Text>
+        <Text style={styles.text}>Profile Screen</Text>
       </View>
     );
   }

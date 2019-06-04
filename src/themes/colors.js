@@ -5,7 +5,7 @@ const colors = {
   gray: '#D8D8D8',
   red: '#E43B30',
   border: '#D8D8D8',
-  activeFont: '#3d3d3d',
+  activeFont: '#EAAB00',
 };
 
 export default colors;
