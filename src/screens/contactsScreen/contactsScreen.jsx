@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 
+import images from 'themes/images';
 import styles from './contactsScreen.styles';
-import images from '../../themes/images';
 
 class HomeScreen extends Component {
   static navigationOptions = ({ navigation }) => ({

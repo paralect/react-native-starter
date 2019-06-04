@@ -5,12 +5,12 @@ import {
 } from 'react-navigation';
 import { StyleSheet } from 'react-native';
 
-import ContactsScreen from '../screens/contactsScreen';
-import HomeScreen from '../screens/homeScreen';
-import ProfileScreen from '../screens/profileScreen';
+import ContactsScreen from 'screens/contactsScreen';
+import HomeScreen from 'screens/homeScreen';
+import ProfileScreen from 'screens/profileScreen';
 
-import metrics from '../themes/metrics';
-import colors from '../themes/colors';
+import metrics from 'themes/metrics';
+import colors from 'themes/colors';
 
 const Tabs = createBottomTabNavigator({
   HomeTab: HomeScreen,
