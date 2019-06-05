@@ -9,4 +9,7 @@ export default StyleSheet.create({
   text: {
     fontSize: 16,
   },
+  tabBarIcon: {
+    width: 25,
+  },
 });

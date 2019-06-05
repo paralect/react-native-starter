@@ -1,3 +1,25 @@
 {
-  "no connection": "Please check your connection."
+  "no connection": "Please check your connection.",
+  "example": "Open up App.js to start working on your app!",
+
+  "signInScreen": {
+    "title": "Sign in with existing account",
+    "noAccount": "Do not have an account?",
+    "signUp": "Sign Up",
+  },
+
+  "signUpScreen": {
+    "title": "Create account now!",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign In"
+  },
+
+  "errorMessage": {
+    "firstName/empty": "First name field is empty",
+    "lastName/empty": "Last name field is empty",
+    "email/empty": "Email field is empty",
+    "password/empty": "Password field is empty",
+    "confirmPassword/empty": "Confirm password field is empty",
+    "confirmPassword/match": "Confirm password and password do not match"
+  }
 }

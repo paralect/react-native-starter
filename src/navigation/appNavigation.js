@@ -1,13 +1,17 @@
 import {
   createStackNavigator,
+  createSwitchNavigator,
   createBottomTabNavigator,
   createAppContainer,
 } from 'react-navigation';
 import { StyleSheet } from 'react-native';
 
-import ContactsScreen from 'screens/contactsScreen';
-import HomeScreen from 'screens/homeScreen';
-import ProfileScreen from 'screens/profileScreen';
+import ContactsScreen from '../screens/contactsScreen';
+import HomeScreen from '../screens/homeScreen';
+import ProfileScreen from '../screens/profileScreen';
+import SignUpScreen from '../screens/signUpScreen';
+import SignInScreen from '../screens/signInScreen';
+import AuthLoadingScreen from '../screens/authLoadingScreen';
 
 import metrics from 'themes/metrics';
 import colors from 'themes/colors';
@@ -22,7 +26,7 @@ const Tabs = createBottomTabNavigator({
     labelStyle: {
       fontSize: 13,
     },
-    activeTintColor: colors.activeFont,
+    activeTintColor: colors.darkPurple,
     style: {
       paddingVertical: 5,
       height: metrics.tabBarHeight,
@@ -42,4 +46,23 @@ const App = createStackNavigator({
   headerMode: 'screen',
 });
 
-export default createAppContainer(App);
+const AuthStack = createStackNavigator({
+  SignIn: {
+    screen: SignInScreen,
+    path: 'signin',
+  },
+  SignUp: SignUpScreen,
+}, {
+  headerMode: 'screen',
+});
+
+const AppNavigation = createSwitchNavigator({
+  AuthLoading: { screen: AuthLoadingScreen },
+  Auth: {
+    screen: AuthStack,
+    path: '',
+  },
+  App,
+});
+
+export default createAppContainer(AppNavigation);

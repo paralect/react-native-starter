@@ -5,8 +5,12 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 25,
   },
   text: {
     fontSize: 16,
+  },
+  tabBarIcon: {
+    width: 25,
   },
 });
