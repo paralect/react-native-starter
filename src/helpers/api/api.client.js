@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import config from 'react-native-starter/src/resources/config';
+import config from 'resources/config';
 
 import ApiError from './api.error';
 

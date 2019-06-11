@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import AppNavigation from './navigation/appNavigation';
+import ConnectionError from './components/connectionError';
 
 import configureStore from './resources/store';
 
@@ -12,6 +13,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <AppNavigation />
+        <ConnectionError />
       </Provider>
     );
   }
