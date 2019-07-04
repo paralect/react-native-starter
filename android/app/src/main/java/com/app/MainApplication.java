@@ -3,6 +3,7 @@ package com.app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.reactcommunity.rnlocalize.RNLocalizePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new AsyncStoragePackage(),
         new ReactNativeConfigPackage(),
         new RNLocalizePackage(),
         new RNGestureHandlerPackage(),

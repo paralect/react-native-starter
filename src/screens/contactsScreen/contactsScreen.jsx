@@ -4,12 +4,14 @@ import { View, Text, Image } from 'react-native';
 import images from 'themes/images';
 import styles from './contactsScreen.styles';
 
-class HomeScreen extends Component {
+class ContactsScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Contacts',
     tabBarIcon: ({ focused }) => (
       <Image
         source={focused ? images.contactActive : images.contact}
+        style={styles.tabBarIcon}
+        resizeMode="contain"
       />
     ),
   })
@@ -23,4 +25,4 @@ class HomeScreen extends Component {
   }
 }
 
-export default HomeScreen;
+export default ContactsScreen;

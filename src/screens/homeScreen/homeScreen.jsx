@@ -10,6 +10,8 @@ class HomeScreen extends Component {
     tabBarIcon: ({ focused }) => (
       <Image
         source={focused ? images.homeActive : images.home}
+        style={styles.tabBarIcon}
+        resizeMode="contain"
       />
     ),
   })
