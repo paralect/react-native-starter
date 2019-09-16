@@ -87,6 +87,10 @@ npm run ios
 2. Android Studio may offer to update Gradle. It may break the app and cause crashes in release mode. The latest tested version of Gradle is already installed in this repo, so perform Gradle upgrading at your own risk.
 3. In order to deploy the app using Bitrise you can use [this guide](https://devcenter.bitrise.io/getting-started/getting-started-with-react-native-apps/). [Here](https://gist.github.com/SobakaSlava/1c6867d4f7f7e6813fedc0125dd5d1ea) is a working example of Bitrise workflow yaml configuration.  
 
+## Demo
+
+![React Native starter demo](demo/demo.gif)
+
 ## License
 
 React Native starter is released under the [MIT License](LICENSE).
