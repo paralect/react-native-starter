@@ -8,3 +8,6 @@ export const signIn = (email, password) => apiClient
 
 export const verifyEmailDev = _signupToken => apiClient
   .get(`account/verifyEmail/${_signupToken}`);
+
+export const signOut = () => apiClient
+  .post('account/logout');

@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { TextField } from 'react-native-material-textfield';
+import { TextInput } from 'react-native';
 import getKeyboardType from '../../helpers/getKeyboardType';
-import colors from '../../themes/colors';
+
+import styles from './input.styles';
 
 class Input extends Component {
   render() {
@@ -11,11 +12,11 @@ class Input extends Component {
       value, error, returnKeyType, getRef,
     } = this.props;
     return (
-      <TextField
-        label={label}
+      <TextInput
         ref={getRef}
         value={value}
-        type={type}
+        placeholder={label}
+        textContentType={type}
         error={error}
         blurOnSubmit={blurOnSubmit}
         onSubmitEditing={onSubmitEditing}
@@ -23,9 +24,7 @@ class Input extends Component {
         secureTextEntry={type === 'password'}
         keyboardType={getKeyboardType(type)}
         returnKeyType={returnKeyType}
-        tintColor={colors.darkPurple}
-        baseColor={colors.font}
-        textColor={colors.font}
+        style={styles.input}
       />
     );
   }
@@ -33,18 +32,19 @@ class Input extends Component {
 
 Input.propTypes = {
   type: PropTypes.string,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   error: PropTypes.string,
   returnKeyType: PropTypes.string,
-  getRef: PropTypes.shape({ current: PropTypes.instanceOf(TextField) }),
+  getRef: PropTypes.shape(),
   blurOnSubmit: PropTypes.bool,
   onSubmitEditing: PropTypes.func,
 };
 
 Input.defaultProps = {
-  type: 'text',
+  type: 'none',
+  label: '',
   value: '',
   error: null,
   returnKeyType: 'done',

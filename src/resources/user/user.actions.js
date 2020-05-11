@@ -27,8 +27,8 @@ export const signUp = userData => async () => {
 export const signIn = (email, password) => async () => {
   try {
     const payload = await api.signIn(email, password);
-    config.token = payload.token;
-    await setItem('token', payload.token);
+    config.token = payload.accessToken;
+    await setItem('token', payload.accessToken);
   } catch (error) {
     if (error.status === 400) {
       throw new ApiError(error.data, error.status);
@@ -45,6 +45,7 @@ export const signIn = (email, password) => async () => {
 
 export const signOut = () => async () => {
   try {
+    await api.signOut();
     config.token = null;
     await removeItem('token');
   } catch (error) {
