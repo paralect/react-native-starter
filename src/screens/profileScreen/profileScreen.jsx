@@ -14,20 +14,23 @@ import MainButton from '../../components/mainButton';
 import styles from './profileScreen.styles';
 
 class ProfileScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Profile',
-    tabBarIcon: ({ focused }) => (
-      <Image
-        source={focused ? images.profileActive : images.profile}
-        style={styles.tabBarIcon}
-        resizeMode="contain"
-      />
-    ),
-  })
+  componentDidMount() {
+    const { navigation } = this.props;
+    navigation.setOptions({
+      title: 'Profile',
+      tabBarIcon: ({ focused }) => (
+        <Image
+          source={focused ? images.profileActive : images.profile}
+          style={styles.tabBarIcon}
+          resizeMode="contain"
+        />
+      ),
+    });
+  }
 
   onSignOutPress = () => {
-    const { signOut, navigation } = this.props;
-    signOut().then(() => navigation.navigate('AuthLoading'));
+    const { signOut } = this.props;
+    signOut();
   }
 
   render() {

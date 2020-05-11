@@ -29,7 +29,6 @@ function SignInScreen({ signIn, navigation }) {
 
     if (!containErrors) {
       signIn(email, password)
-        .then(() => navigation.navigate('App'))
         .catch((error) => {
           const { data } = error;
           const { errors } = data;

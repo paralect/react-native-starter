@@ -161,7 +161,6 @@
 				DC6DAFC20ECC43D5C894C6EF /* Pods-app-tvOSTests.debug.xcconfig */,
 				C6A80A961605C4F13D81120B /* Pods-app-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

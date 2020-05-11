@@ -4,6 +4,11 @@ import config from '../config';
 import ApiError from '../../helpers/api/api.error';
 import { setItem, removeItem } from '../../helpers/storage';
 
+import {
+  USER_SIGNED_IN,
+  USER_LOGGED_OUT,
+} from './user.constants';
+
 import * as api from './user.api';
 
 export const signUp = userData => async () => {
@@ -24,11 +29,12 @@ export const signUp = userData => async () => {
   }
 };
 
-export const signIn = (email, password) => async () => {
+export const signIn = (email, password) => async (dispatch) => {
   try {
-    const payload = await api.signIn(email, password);
-    config.token = payload.accessToken;
-    await setItem('token', payload.accessToken);
+    const userInfo = await api.signIn(email, password);
+    config.token = userInfo.accessToken;
+    await setItem('token', userInfo.accessToken);
+    dispatch({ type: USER_SIGNED_IN, userInfo });
   } catch (error) {
     if (error.status === 400) {
       throw new ApiError(error.data, error.status);
@@ -43,11 +49,12 @@ export const signIn = (email, password) => async () => {
   }
 };
 
-export const signOut = () => async () => {
+export const signOut = () => async (dispatch) => {
   try {
     await api.signOut();
     config.token = null;
     await removeItem('token');
+    dispatch({ type: USER_LOGGED_OUT });
   } catch (error) {
     Alert.alert(
       'SignOut Failed',
