@@ -12,6 +12,7 @@ export default StyleSheet.create({
     color: '#72787c',
     fontSize: 18,
     textAlign: 'center',
+    marginBottom: 20,
   },
   link: {
     color: colors.darkPurple,

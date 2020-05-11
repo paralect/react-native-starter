@@ -1,68 +1,86 @@
-import {
-  createStackNavigator,
-  createSwitchNavigator,
-  createBottomTabNavigator,
-  createAppContainer,
-} from 'react-navigation';
+import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import ContactsScreen from '../screens/contactsScreen';
+import SplashScreen from '../screens/splashScreen';
 import HomeScreen from '../screens/homeScreen';
+import ContactsScreen from '../screens/contactsScreen';
 import ProfileScreen from '../screens/profileScreen';
-import SignUpScreen from '../screens/signUpScreen';
 import SignInScreen from '../screens/signInScreen';
-import AuthLoadingScreen from '../screens/authLoadingScreen';
+import SignUpScreen from '../screens/signUpScreen';
 
-import metrics from 'themes/metrics';
-import colors from 'themes/colors';
+import { USER_AUTHENTICATED } from '../resources/user/user.constants';
+import * as userSelectors from '../resources/user/user.selectors';
 
-const Tabs = createBottomTabNavigator({
-  HomeTab: HomeScreen,
-  ContactsTab: ContactsScreen,
-  ProfileTab: ProfileScreen,
-}, {
-  initialRouteName: 'HomeTab',
-  tabBarOptions: {
-    labelStyle: {
-      fontSize: 13,
-    },
-    activeTintColor: colors.darkPurple,
-    style: {
-      paddingVertical: 5,
-      height: metrics.tabBarHeight,
-      borderTopColor: colors.border,
-      borderTopWidth: StyleSheet.hairlineWidth,
-    },
+import { getItem } from '../helpers/storage';
+import config from '../resources/config';
+
+import colors from '../themes/colors';
+
+const prefix = `${config.applicationId}://`;
+
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+const tabBarOptions = {
+  keyboardHidesTabBar: true,
+  labelStyle: {
+    fontSize: 13,
   },
-  lazy: true,
-});
-
-const App = createStackNavigator({
-  Tabs: {
-    screen: Tabs,
-    navigationOptions: { header: null },
+  activeTintColor: colors.darkPurple,
+  style: {
+    paddingVertical: 5,
+    borderTopColor: colors.border,
+    borderTopWidth: StyleSheet.hairlineWidth,
   },
-}, {
-  headerMode: 'screen',
-});
+};
 
-const AuthStack = createStackNavigator({
-  SignIn: {
-    screen: SignInScreen,
-    path: 'signin',
-  },
-  SignUp: SignUpScreen,
-}, {
-  headerMode: 'screen',
-});
+const AppNavigation = () => {
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+  const userAuthenticated = useSelector(userSelectors.getUserAuthenticated);
 
-const AppNavigation = createSwitchNavigator({
-  AuthLoading: { screen: AuthLoadingScreen },
-  Auth: {
-    screen: AuthStack,
-    path: '',
-  },
-  App,
-});
+  const getToken = useCallback(async () => {
+    const token = await getItem('token');
+    config.token = token;
+    setIsLoading(false);
+    if (token) {
+      dispatch({ type: USER_AUTHENTICATED });
+    }
+  }, []);
 
-export default createAppContainer(AppNavigation);
+  useEffect(() => {
+    getToken();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <SplashScreen />
+    );
+  }
+
+  return (
+    <NavigationContainer linking={{ prefixes: [prefix] }}>
+      {userAuthenticated
+        ? (
+          <Tab.Navigator initialRouteName="Home" tabBarOptions={tabBarOptions} lazy={false}>
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Contacts" component={ContactsScreen} />
+            <Tab.Screen name="Profile" component={ProfileScreen} />
+          </Tab.Navigator>
+        )
+        : (
+          <Stack.Navigator headerMode='none'>
+            <Stack.Screen name="SignIn" component={SignInScreen} />
+            <Stack.Screen name="SignUp" component={SignUpScreen} />
+          </Stack.Navigator>
+        )
+      }
+    </NavigationContainer>
+  );
+};
+
+export default AppNavigation;

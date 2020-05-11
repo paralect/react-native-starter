@@ -5,16 +5,19 @@ import images from 'themes/images';
 import styles from './contactsScreen.styles';
 
 class ContactsScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Contacts',
-    tabBarIcon: ({ focused }) => (
-      <Image
-        source={focused ? images.contactActive : images.contact}
-        style={styles.tabBarIcon}
-        resizeMode="contain"
-      />
-    ),
-  })
+  componentDidMount() {
+    const { navigation } = this.props;
+    navigation.setOptions({
+      title: 'Contacts',
+      tabBarIcon: ({ focused }) => (
+        <Image
+          source={focused ? images.contactActive : images.contact}
+          style={styles.tabBarIcon}
+          resizeMode="contain"
+        />
+      ),
+    });
+  }
 
   render() {
     return (

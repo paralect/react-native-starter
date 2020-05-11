@@ -1,1 +1,3 @@
-export const USER_LOGOUT = 'USER_LOGOUT';
+export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';
+export const USER_SIGNED_IN = 'USER_SIGNED_IN';
+export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';

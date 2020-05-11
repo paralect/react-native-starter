@@ -5,16 +5,19 @@ import images from 'themes/images';
 import styles from './homeScreen.styles';
 
 class HomeScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Home',
-    tabBarIcon: ({ focused }) => (
-      <Image
-        source={focused ? images.homeActive : images.home}
-        style={styles.tabBarIcon}
-        resizeMode="contain"
-      />
-    ),
-  })
+  componentDidMount() {
+    const { navigation } = this.props;
+    navigation.setOptions({
+      title: 'Home',
+      tabBarIcon: ({ focused }) => (
+        <Image
+          source={focused ? images.homeActive : images.home}
+          style={styles.tabBarIcon}
+          resizeMode="contain"
+        />
+      ),
+    });
+  }
 
   render() {
     return (

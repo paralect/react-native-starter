@@ -49,7 +49,7 @@ function SignUpScreen({ verifyEmailDev, signUp, navigation }) {
       };
       signUp(userData)
         .then((result) => {
-          setSignupToken(result._signupToken);
+          setSignupToken(result.signupToken);
           setValidationErrors({});
         })
         .catch((error) => {
@@ -79,7 +79,7 @@ function SignUpScreen({ verifyEmailDev, signUp, navigation }) {
       <Input
         label="First name"
         value={firstName}
-        type="text"
+        type="givenName"
         onChange={setFirstName}
         error={validationErrors.firstName && validationErrors.firstName[0]}
         returnKeyType="next"
@@ -91,7 +91,7 @@ function SignUpScreen({ verifyEmailDev, signUp, navigation }) {
         getRef={lastNameInput}
         label="Last name"
         value={lastName}
-        type="text"
+        type="familyName"
         onChange={setLastName}
         error={validationErrors.lastName && validationErrors.lastName[0]}
         returnKeyType="next"
@@ -103,7 +103,7 @@ function SignUpScreen({ verifyEmailDev, signUp, navigation }) {
         getRef={emailInput}
         label="Email"
         value={email}
-        type="email"
+        type="emailAddress"
         onChange={setEmail}
         error={validationErrors.email && validationErrors.email[0]}
         returnKeyType="next"

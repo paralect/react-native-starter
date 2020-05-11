@@ -29,7 +29,6 @@ function SignInScreen({ signIn, navigation }) {
 
     if (!containErrors) {
       signIn(email, password)
-        .then(() => navigation.navigate('App'))
         .catch((error) => {
           const { data } = error;
           const { errors } = data;
@@ -53,7 +52,7 @@ function SignInScreen({ signIn, navigation }) {
       <Input
         label="Email"
         value={email}
-        type="email"
+        type="emailAddress"
         onChange={setEmail}
         error={validationErrors.email && validationErrors.email[0]}
         returnKeyType="next"
@@ -73,7 +72,7 @@ function SignInScreen({ signIn, navigation }) {
         title="Sign In"
         onPress={onSignIn}
       />
-      <View style={styles.signupContainer}>
+      {/* <View style={styles.signupContainer}>
         <Text style={styles.text}>
           {i18n.t('signInScreen.noAccount')}
           &nbsp;
@@ -84,7 +83,7 @@ function SignInScreen({ signIn, navigation }) {
         >
           {i18n.t('signInScreen.signUp')}
         </Text>
-      </View>
+      </View> */}
     </View>
   );
 }
