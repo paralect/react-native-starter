@@ -66,3 +66,7 @@ export const getServerErrors = (commonErrors, key) => {
     .map(error => error[key]);
   return errors;
 };
+
+export const containErrors = (errors) => {
+  return !!Object.keys(errors).filter(key => errors[key].length).length;
+};

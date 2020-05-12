@@ -8,13 +8,11 @@ import configureStore from './resources/store';
 
 const { store } = configureStore();
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <AppNavigation />
-        <ConnectionError />
-      </Provider>
-    );
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <AppNavigation />
+    <ConnectionError />
+  </Provider>
+);
+
+export default App;

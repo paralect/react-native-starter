@@ -1,65 +1,28 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  Image,
-} from 'react-native';
-import { connect } from 'react-redux';
-import images from 'themes/images';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { View, Text } from 'react-native';
 
 import * as userActions from '../../resources/user/user.actions';
 import MainButton from '../../components/mainButton';
 
 import styles from './profileScreen.styles';
 
-class ProfileScreen extends Component {
-  componentDidMount() {
-    const { navigation } = this.props;
-    navigation.setOptions({
-      title: 'Profile',
-      tabBarIcon: ({ focused }) => (
-        <Image
-          source={focused ? images.profileActive : images.profile}
-          style={styles.tabBarIcon}
-          resizeMode="contain"
-        />
-      ),
-    });
-  }
+const ProfileScreen = () => {
+  const dispatch = useDispatch();
 
-  onSignOutPress = () => {
-    const { signOut } = this.props;
-    signOut();
-  }
+  const onSignOutPress = useCallback(() => {
+    dispatch(userActions.signOut());
+  }, []);
 
-  render() {
-    return (
-      <View style={styles.screen}>
-        <Text style={styles.text}>Profile Screen</Text>
-        <MainButton
-          title="Sign out"
-          onPress={this.onSignOutPress}
-        />
-      </View>
-    );
-  }
-}
-
-ProfileScreen.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
-  signOut: PropTypes.func.isRequired,
+  return (
+    <View style={styles.screen}>
+      <Text style={styles.text}>Profile Screen</Text>
+      <MainButton
+        title="Sign out"
+        onPress={onSignOutPress}
+      />
+    </View>
+  );
 };
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = {
-  signOut: userActions.signOut,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ProfileScreen);
+export default ProfileScreen;

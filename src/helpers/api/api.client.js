@@ -15,7 +15,6 @@ const generalError = {
 };
 
 const throwApiError = ({ data = {}, status = 500 }) => {
-  console.error(data); // eslint-disable-line
   throw new ApiError(data, status);
 };
 

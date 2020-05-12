@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types';
 import { Text, View } from 'react-native';
-import React, { useState, useRef } from 'react';
-import { connect } from 'react-redux';
+import React, { useRef, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
 import i18n from '../../i18n';
 import { validate, getServerErrors } from '../../helpers/validate';
+import useForm from '../../hooks/useForm';
+
 import * as userActions from '../../resources/user/user.actions';
 
 import Input from '../../components/input';
@@ -12,67 +13,63 @@ import MainButton from '../../components/mainButton';
 
 import styles from './signInScreen.styles';
 
-function SignInScreen({ signIn, navigation }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [validationErrors, setValidationErrors] = useState({});
+const SignInScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   const passwordInput = useRef(null);
 
-  const onSignIn = () => {
-    const valErrors = {
-      email: validate(email, 'email'),
-      password: validate(password, 'password'),
-    };
-
-    const containErrors = valErrors.password.length
-      || valErrors.email.length;
-
-    if (!containErrors) {
-      signIn(email, password)
-        .catch((error) => {
-          const { data } = error;
-          const { errors } = data;
-          setValidationErrors({
-            email: getServerErrors(errors, 'email'),
-            password: getServerErrors(errors, 'password'),
-          });
-        });
-    } else {
-      setValidationErrors(valErrors);
+  const onSignIn = useCallback(async (values) => {
+    try {
+      await dispatch(userActions.signIn(values.email, values.password));
+    } catch ({ data }) {
+      const { errors } = data;
+      const error = {
+        email: getServerErrors(errors, 'email'),
+        password: getServerErrors(errors, 'password'),
+      };
+      throw error;
     }
-  };
+  }, []);
 
-  const onSignUp = () => {
+  const validateForm = useCallback((values) => {
+    const validationErrors = {
+      email: validate(values.email, 'email'),
+      password: validate(values.password, 'password'),
+    };
+    return validationErrors;
+  });
+
+  const [form, onChange, onSubmit, setFocus] = useForm({}, onSignIn, validateForm);
+
+  const onSignUp = useCallback(() => {
     navigation.navigate('SignUp');
-  };
+  }, []);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{i18n.t('signInScreen.title')}</Text>
       <Input
         label="Email"
-        value={email}
+        value={form.values.email}
         type="emailAddress"
-        onChange={setEmail}
-        error={validationErrors.email && validationErrors.email[0]}
+        onChange={onChange('email')}
+        error={form.errors.email && form.errors.email[0]}
         returnKeyType="next"
         blurOnSubmit={false}
-        onSubmitEditing={() => passwordInput.current && passwordInput.current.input
-          && passwordInput.current.input.focus()}
+        onSubmitEditing={setFocus(passwordInput)}
       />
       <Input
         getRef={passwordInput}
         label="Password"
+        value={form.values.password}
         type="password"
-        value={password}
-        onChange={setPassword}
-        error={validationErrors.password && validationErrors.password[0]}
+        onChange={onChange('password')}
+        error={form.errors.password && form.errors.password[0]}
       />
       <MainButton
         title="Sign In"
-        onPress={onSignIn}
+        onPress={onSubmit}
       />
-      {/* <View style={styles.signupContainer}>
+      <View style={styles.signupContainer}>
         <Text style={styles.text}>
           {i18n.t('signInScreen.noAccount')}
           &nbsp;
@@ -83,27 +80,9 @@ function SignInScreen({ signIn, navigation }) {
         >
           {i18n.t('signInScreen.signUp')}
         </Text>
-      </View> */}
+      </View>
     </View>
   );
 }
 
-SignInScreen.navigationOptions = () => ({
-  header: null,
-});
-
-SignInScreen.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
-  signIn: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = {
-  signIn: userActions.signIn,
-};
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(SignInScreen);
+export default SignInScreen;

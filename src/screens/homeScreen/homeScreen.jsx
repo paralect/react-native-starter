@@ -1,31 +1,14 @@
-import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import React from 'react';
+import { View, Text } from 'react-native';
 
-import images from 'themes/images';
 import styles from './homeScreen.styles';
 
-class HomeScreen extends Component {
-  componentDidMount() {
-    const { navigation } = this.props;
-    navigation.setOptions({
-      title: 'Home',
-      tabBarIcon: ({ focused }) => (
-        <Image
-          source={focused ? images.homeActive : images.home}
-          style={styles.tabBarIcon}
-          resizeMode="contain"
-        />
-      ),
-    });
-  }
-
-  render() {
-    return (
-      <View style={styles.screen}>
-        <Text style={styles.text}>Home Screen</Text>
-      </View>
-    );
-  }
+const HomeScreen = () => {
+  return (
+    <View style={styles.screen}>
+      <Text style={styles.text}>Home Screen</Text>
+    </View>
+  );
 }
 
 export default HomeScreen;

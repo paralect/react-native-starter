@@ -12,6 +12,8 @@ import ProfileScreen from '../screens/profileScreen';
 import SignInScreen from '../screens/signInScreen';
 import SignUpScreen from '../screens/signUpScreen';
 
+import TabIcon from '../components/tabIcon';
+
 import { USER_AUTHENTICATED } from '../resources/user/user.constants';
 import * as userSelectors from '../resources/user/user.selectors';
 
@@ -19,6 +21,7 @@ import { getItem } from '../helpers/storage';
 import config from '../resources/config';
 
 import colors from '../themes/colors';
+import images from '../themes/images';
 
 const prefix = `${config.applicationId}://`;
 
@@ -66,10 +69,28 @@ const AppNavigation = () => {
     <NavigationContainer linking={{ prefixes: [prefix] }}>
       {userAuthenticated
         ? (
-          <Tab.Navigator initialRouteName="Home" tabBarOptions={tabBarOptions} lazy={false}>
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Contacts" component={ContactsScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
+          <Tab.Navigator initialRouteName="Home" tabBarOptions={tabBarOptions}>
+            <Tab.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                tabBarIcon: ({ focused }) => <TabIcon source={focused ? images.homeActive : images.home} />
+              }}
+            />
+            <Tab.Screen
+              name="Contacts"
+              component={ContactsScreen}
+              options={{
+                tabBarIcon: ({ focused }) => <TabIcon source={focused ? images.contactActive : images.contact} />
+              }}
+            />
+            <Tab.Screen
+              name="Profile"
+              component={ProfileScreen}
+              options={{
+                tabBarIcon: ({ focused }) => <TabIcon source={focused ? images.profileActive : images.profile} />
+              }}
+            />
           </Tab.Navigator>
         )
         : (

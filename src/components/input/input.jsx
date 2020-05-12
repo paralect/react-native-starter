@@ -1,34 +1,36 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { TextInput } from 'react-native';
 import getKeyboardType from '../../helpers/getKeyboardType';
 
 import styles from './input.styles';
 
-class Input extends Component {
-  render() {
-    const {
-      type, label, onChange, blurOnSubmit, onSubmitEditing,
-      value, error, returnKeyType, getRef,
-    } = this.props;
-    return (
-      <TextInput
-        ref={getRef}
-        value={value}
-        placeholder={label}
-        textContentType={type}
-        error={error}
-        blurOnSubmit={blurOnSubmit}
-        onSubmitEditing={onSubmitEditing}
-        onChangeText={onChange}
-        secureTextEntry={type === 'password'}
-        keyboardType={getKeyboardType(type)}
-        returnKeyType={returnKeyType}
-        style={styles.input}
-      />
-    );
-  }
-}
+const Input = ({
+  type,
+  label,
+  onChange,
+  blurOnSubmit,
+  onSubmitEditing,
+  value,
+  error,
+  returnKeyType,
+  getRef,
+}) => (
+  <TextInput
+    ref={getRef}
+    value={value}
+    placeholder={label}
+    textContentType={type}
+    error={error}
+    blurOnSubmit={blurOnSubmit}
+    onSubmitEditing={onSubmitEditing}
+    onChangeText={onChange}
+    secureTextEntry={type === 'password'}
+    keyboardType={getKeyboardType(type)}
+    returnKeyType={returnKeyType}
+    style={styles.input}
+  />
+);
 
 Input.propTypes = {
   type: PropTypes.string,
