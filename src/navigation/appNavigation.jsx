@@ -5,23 +5,23 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import SplashScreen from '../screens/splashScreen';
-import HomeScreen from '../screens/homeScreen';
-import ContactsScreen from '../screens/contactsScreen';
-import ProfileScreen from '../screens/profileScreen';
-import SignInScreen from '../screens/signInScreen';
-import SignUpScreen from '../screens/signUpScreen';
+import SplashScreen from 'screens/splashScreen';
+import HomeScreen from 'screens/homeScreen';
+import ContactsScreen from 'screens/contactsScreen';
+import ProfileScreen from 'screens/profileScreen';
+import SignInScreen from 'screens/signInScreen';
+import SignUpScreen from 'screens/signUpScreen';
 
-import TabIcon from '../components/tabIcon';
+import TabIcon from 'components/tabIcon';
 
-import { USER_AUTHENTICATED } from '../resources/user/user.constants';
-import * as userSelectors from '../resources/user/user.selectors';
+import { USER_AUTHENTICATED } from 'resources/user/user.constants';
+import * as userSelectors from 'resources/user/user.selectors';
 
-import { getItem } from '../helpers/storage';
-import config from '../resources/config';
+import { getItem } from 'helpers/storage';
+import config from 'resources/config';
 
-import colors from '../themes/colors';
-import images from '../themes/images';
+import colors from 'themes/colors';
+import images from 'themes/images';
 
 const prefix = `${config.applicationId}://`;
 

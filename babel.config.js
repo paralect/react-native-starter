@@ -5,6 +5,9 @@ module.exports = (api) => {
     plugins: [
       ['module-resolver', {
         root: ['./src'],
+        alias: {
+          assets: './assets',
+        },
       }],
     ],
   };

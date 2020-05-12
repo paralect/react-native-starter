@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { View, Text } from 'react-native';
 
-import * as userActions from '../../resources/user/user.actions';
-import MainButton from '../../components/mainButton';
+import * as userActions from 'resources/user/user.actions';
+import MainButton from 'components/mainButton';
 
 import styles from './profileScreen.styles';
 

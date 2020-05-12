@@ -1,4 +1,4 @@
-import { apiClient } from '../../helpers/api';
+import { apiClient } from 'helpers/api';
 
 export const signUp = userData => apiClient
   .post('account/signup', userData);

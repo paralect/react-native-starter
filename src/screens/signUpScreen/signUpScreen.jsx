@@ -3,14 +3,14 @@ import { Text, View } from 'react-native';
 import React, { useState, useRef, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import i18n from '../../i18n';
-import { validate, getServerErrors } from '../../helpers/validate';
-import useForm from '../../hooks/useForm';
+import i18n from 'i18n';
+import { validate, getServerErrors } from 'helpers/validate';
+import useForm from 'hooks/useForm';
 
-import * as userActions from '../../resources/user/user.actions';
+import * as userActions from 'resources/user/user.actions';
 
-import Input from '../../components/input';
-import MainButton from '../../components/mainButton';
+import Input from 'components/input';
+import MainButton from 'components/mainButton';
 
 import styles from './signUpScreen.styles';
 

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { containErrors } from '../helpers/validate';
+import { containErrors } from 'helpers/validate';
 
 const useForm = (defaultValues, handleSubmit, validateForm) => {
   const [values, setValues] = useState(defaultValues);
@@ -19,8 +19,6 @@ const useForm = (defaultValues, handleSubmit, validateForm) => {
     if (validateForm) {
       validationErrors = validateForm(values);
     }
-
-    console.log(validationErrors);
 
     if (containErrors(validationErrors)) {
       setErrors(validationErrors);
