@@ -71,9 +71,9 @@ const SignUpScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>{i18n.t('signUpScreen.title')}</Text>
       <Input
-        label="First name"
         value={form.values.firstName}
         type="givenName"
+        placeholder="First name"
         onChange={onChange('firstName')}
         error={form.errors.firstName && form.errors.firstName[0]}
         returnKeyType="next"
@@ -82,9 +82,9 @@ const SignUpScreen = ({ navigation }) => {
       />
       <Input
         getRef={lastNameInput}
-        label="Last name"
         value={form.values.lastName}
         type="familyName"
+        placeholder="Last name"
         onChange={onChange('lastName')}
         error={form.errors.lastName && form.errors.lastName[0]}
         returnKeyType="next"
@@ -93,7 +93,7 @@ const SignUpScreen = ({ navigation }) => {
       />
       <Input
         getRef={emailInput}
-        label="Email"
+        placeholder="Email"
         value={form.values.email}
         type="emailAddress"
         onChange={onChange('email')}
@@ -104,7 +104,7 @@ const SignUpScreen = ({ navigation }) => {
       />
       <Input
         getRef={passwordInput}
-        label="Password"
+        placeholder="Password"
         type="password"
         value={form.values.password}
         onChange={onChange('password')}
@@ -115,7 +115,7 @@ const SignUpScreen = ({ navigation }) => {
       />
       <Input
         getRef={confirmPasswordInput}
-        label="Confirm password"
+        placeholder="Confirm password"
         type="password"
         value={form.values.confirmPassword}
         onChange={onChange('confirmPassword')}

@@ -48,9 +48,9 @@ const SignInScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>{i18n.t('signInScreen.title')}</Text>
       <Input
-        label="Email"
         value={form.values.email}
         type="emailAddress"
+        placeholder="Email"
         onChange={onChange('email')}
         error={form.errors.email && form.errors.email[0]}
         returnKeyType="next"
@@ -59,9 +59,9 @@ const SignInScreen = ({ navigation }) => {
       />
       <Input
         getRef={passwordInput}
-        label="Password"
         value={form.values.password}
         type="password"
+        placeholder="Password"
         onChange={onChange('password')}
         error={form.errors.password && form.errors.password[0]}
       />
