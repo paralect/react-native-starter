@@ -1,8 +1,8 @@
 import { Alert } from 'react-native';
-import config from '../config';
+import config from 'resources/config';
 
-import ApiError from '../../helpers/api/api.error';
-import { setItem, removeItem } from '../../helpers/storage';
+import ApiError from 'helpers/api/api.error';
+import { setItem, removeItem } from 'helpers/storage';
 
 import {
   USER_SIGNED_IN,

@@ -1,7 +1,5 @@
 import React, { useEffect, useState, memo } from 'react';
-import {
-  View, Text, TouchableOpacity,
-} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import PropTypes from 'prop-types';
 
@@ -20,7 +18,10 @@ function ConnectionError({ isClosable }) {
     }
   }, [netInfo]);
 
-  if (!errorText) return null;
+  if (!errorText) {
+    return null;
+  }
+
   return (
     <View style={styles.connectionErrorView}>
       <Text style={styles.connectionErrorText}>

@@ -11,17 +11,17 @@ export default (state = {}, action) => {
         ...state,
         ...action.userInfo,
         authenticated: true,
-      }
-      case USER_AUTHENTICATED:
-        return {
-          ...state,
-          authenticated: true,
-        };
-      case USER_LOGGED_OUT:
-        return {
-          ...state,
-          authenticated: false,
-        };
+      };
+    case USER_AUTHENTICATED:
+      return {
+        ...state,
+        authenticated: true,
+      };
+    case USER_LOGGED_OUT:
+      return {
+        ...state,
+        authenticated: false,
+      };
     default:
       return state;
   }

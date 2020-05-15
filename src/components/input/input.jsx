@@ -1,23 +1,30 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { TextInput } from 'react-native';
-import getKeyboardType from '../../helpers/getKeyboardType';
+import React from 'react';
+import { TextInput, Text, View } from 'react-native';
+import getKeyboardType from 'helpers/getKeyboardType';
 
 import styles from './input.styles';
 
-class Input extends Component {
-  render() {
-    const {
-      type, label, onChange, blurOnSubmit, onSubmitEditing,
-      value, error, returnKeyType, getRef,
-    } = this.props;
-    return (
+function Input({
+  type,
+  label,
+  onChange,
+  placeholder,
+  blurOnSubmit,
+  onSubmitEditing,
+  value,
+  error,
+  returnKeyType,
+  getRef,
+}) {
+  return (
+    <View style={styles.inputContainer}>
+      {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         ref={getRef}
         value={value}
-        placeholder={label}
+        placeholder={placeholder}
         textContentType={type}
-        error={error}
         blurOnSubmit={blurOnSubmit}
         onSubmitEditing={onSubmitEditing}
         onChangeText={onChange}
@@ -26,13 +33,15 @@ class Input extends Component {
         returnKeyType={returnKeyType}
         style={styles.input}
       />
-    );
-  }
+      {error && <Text style={styles.error}>{error}</Text>}
+    </View>
+  );
 }
 
 Input.propTypes = {
   type: PropTypes.string,
   label: PropTypes.string,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   error: PropTypes.string,
@@ -44,8 +53,9 @@ Input.propTypes = {
 
 Input.defaultProps = {
   type: 'none',
-  label: '',
+  label: null,
   value: '',
+  placeholder: '',
   error: null,
   returnKeyType: 'done',
   getRef: { current: null },

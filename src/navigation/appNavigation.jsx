@@ -5,20 +5,23 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import SplashScreen from '../screens/splashScreen';
-import HomeScreen from '../screens/homeScreen';
-import ContactsScreen from '../screens/contactsScreen';
-import ProfileScreen from '../screens/profileScreen';
-import SignInScreen from '../screens/signInScreen';
-import SignUpScreen from '../screens/signUpScreen';
+import SplashScreen from 'screens/splashScreen';
+import HomeScreen from 'screens/homeScreen';
+import ContactsScreen from 'screens/contactsScreen';
+import ProfileScreen from 'screens/profileScreen';
+import SignInScreen from 'screens/signInScreen';
+import SignUpScreen from 'screens/signUpScreen';
 
-import { USER_AUTHENTICATED } from '../resources/user/user.constants';
-import * as userSelectors from '../resources/user/user.selectors';
+import TabIcon from 'components/tabIcon';
 
-import { getItem } from '../helpers/storage';
-import config from '../resources/config';
+import { USER_AUTHENTICATED } from 'resources/user/user.constants';
+import * as userSelectors from 'resources/user/user.selectors';
 
-import colors from '../themes/colors';
+import { getItem } from 'helpers/storage';
+import config from 'resources/config';
+
+import colors from 'themes/colors';
+import images from 'themes/images';
 
 const prefix = `${config.applicationId}://`;
 
@@ -38,6 +41,27 @@ const tabBarOptions = {
   },
 };
 
+const tabs = [
+  {
+    title: 'Home',
+    component: HomeScreen,
+    tabIcon: images.home,
+    activeTabIcon: images.homeActive,
+  },
+  {
+    title: 'Contacts',
+    component: ContactsScreen,
+    tabIcon: images.contacts,
+    activeTabIcon: images.contactsActive,
+  },
+  {
+    title: 'Profile',
+    component: ProfileScreen,
+    tabIcon: images.profile,
+    activeTabIcon: images.profileActive,
+  },
+];
+
 const AppNavigation = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -50,11 +74,11 @@ const AppNavigation = () => {
     if (token) {
       dispatch({ type: USER_AUTHENTICATED });
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     getToken();
-  }, []);
+  }, [getToken]);
 
   if (isLoading) {
     return (
@@ -66,14 +90,22 @@ const AppNavigation = () => {
     <NavigationContainer linking={{ prefixes: [prefix] }}>
       {userAuthenticated
         ? (
-          <Tab.Navigator initialRouteName="Home" tabBarOptions={tabBarOptions} lazy={false}>
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Contacts" component={ContactsScreen} />
-            <Tab.Screen name="Profile" component={ProfileScreen} />
+          <Tab.Navigator initialRouteName="Home" tabBarOptions={tabBarOptions}>
+            {tabs.map(tab => (
+              <Tab.Screen
+                name={tab.title}
+                component={tab.component}
+                options={{
+                  tabBarIcon: icon => (
+                    <TabIcon source={icon.focused ? tab.activeTabIcon : tab.tabIcon} />
+                  ),
+                }}
+              />
+            ))}
           </Tab.Navigator>
         )
         : (
-          <Stack.Navigator headerMode='none'>
+          <Stack.Navigator headerMode="none">
             <Stack.Screen name="SignIn" component={SignInScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
           </Stack.Navigator>

@@ -1,4 +1,4 @@
-import i18n from '../i18n';
+import i18n from 'i18n';
 
 const firstNameValidator = (value) => {
   const errors = [];
@@ -61,8 +61,12 @@ export const validate = (value, key) => {
 };
 
 export const getServerErrors = (commonErrors, key) => {
-  const errors = commonErrors
+  return commonErrors
     .filter(error => Object.keys(error)[0] === key)
     .map(error => error[key]);
-  return errors;
+};
+
+export const containErrors = (errors) => {
+  return Boolean(Object.keys(errors)
+    .filter(key => errors[key].length).length);
 };
