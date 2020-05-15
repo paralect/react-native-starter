@@ -1,5 +1,6 @@
-import { Text, View } from 'react-native';
 import React, { useRef, useCallback } from 'react';
+import PropTypes from 'prop-types';
+import { Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import i18n from 'i18n';
@@ -13,7 +14,7 @@ import MainButton from 'components/mainButton';
 
 import styles from './signInScreen.styles';
 
-const SignInScreen = ({ navigation }) => {
+function SignInScreen({ navigation }) {
   const dispatch = useDispatch();
   const passwordInput = useRef(null);
 
@@ -28,7 +29,7 @@ const SignInScreen = ({ navigation }) => {
       };
       throw error;
     }
-  }, []);
+  }, [dispatch]);
 
   const validateForm = useCallback((values) => {
     const validationErrors = {
@@ -36,13 +37,13 @@ const SignInScreen = ({ navigation }) => {
       password: validate(values.password, 'password'),
     };
     return validationErrors;
-  });
+  }, []);
 
   const [form, onChange, onSubmit, setFocus] = useForm({}, onSignIn, validateForm);
 
   const onSignUp = useCallback(() => {
     navigation.navigate('SignUp');
-  }, []);
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
@@ -84,5 +85,11 @@ const SignInScreen = ({ navigation }) => {
     </View>
   );
 }
+
+SignInScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default SignInScreen;

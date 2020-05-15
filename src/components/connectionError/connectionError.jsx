@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import i18n from 'i18n';
 import styles from './connectionError.styles';
 
-const ConnectionError = ({ isClosable }) => {
+function ConnectionError({ isClosable }) {
   const [errorText, setErrorText] = useState(null);
   const netInfo = useNetInfo();
 
@@ -20,7 +20,7 @@ const ConnectionError = ({ isClosable }) => {
 
   if (!errorText) {
     return null;
-  };
+  }
 
   return (
     <View style={styles.connectionErrorView}>

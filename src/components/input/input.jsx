@@ -5,7 +5,7 @@ import getKeyboardType from 'helpers/getKeyboardType';
 
 import styles from './input.styles';
 
-const Input = ({
+function Input({
   type,
   label,
   onChange,
@@ -16,25 +16,27 @@ const Input = ({
   error,
   returnKeyType,
   getRef,
-}) => (
-  <View style={styles.inputContainer}>
-    {label && <Text style={styles.label}>{label}</Text>}
-    <TextInput
-      ref={getRef}
-      value={value}
-      placeholder={placeholder}
-      textContentType={type}
-      blurOnSubmit={blurOnSubmit}
-      onSubmitEditing={onSubmitEditing}
-      onChangeText={onChange}
-      secureTextEntry={type === 'password'}
-      keyboardType={getKeyboardType(type)}
-      returnKeyType={returnKeyType}
-      style={styles.input}
-    />
-    {error && <Text style={styles.error}>{error}</Text>}
-  </View>
-);
+}) {
+  return (
+    <View style={styles.inputContainer}>
+      {label && <Text style={styles.label}>{label}</Text>}
+      <TextInput
+        ref={getRef}
+        value={value}
+        placeholder={placeholder}
+        textContentType={type}
+        blurOnSubmit={blurOnSubmit}
+        onSubmitEditing={onSubmitEditing}
+        onChangeText={onChange}
+        secureTextEntry={type === 'password'}
+        keyboardType={getKeyboardType(type)}
+        returnKeyType={returnKeyType}
+        style={styles.input}
+      />
+      {error && <Text style={styles.error}>{error}</Text>}
+    </View>
+  );
+}
 
 Input.propTypes = {
   type: PropTypes.string,

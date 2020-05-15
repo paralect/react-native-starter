@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { USER_LOGOUT } from './user/user.constants';
+import { USER_LOGGED_OUT } from './user/user.constants';
 import user from './user/user.reducer';
 
 const appReducer = combineReducers({
@@ -8,7 +8,7 @@ const appReducer = combineReducers({
 });
 
 const rootReducer = (state, action) => {
-  if (action.type === USER_LOGOUT) {
+  if (action.type === USER_LOGGED_OUT) {
     // eslint-disable-next-line no-param-reassign
     state = undefined;
   }

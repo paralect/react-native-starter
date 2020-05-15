@@ -1,3 +1,6 @@
 {
-  "extends": "@paralect/eslint-config"
+  "extends": [
+    "@paralect/eslint-config",
+    "plugin:react-hooks/recommended"
+  ]
 }

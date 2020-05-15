@@ -29,7 +29,7 @@ const useForm = (defaultValues, handleSubmit, validateForm) => {
         setErrors(serverErrors);
       }
     }
-  }, [values, handleSubmit]);
+  }, [values, handleSubmit, validateForm]);
 
   const setFocus = useCallback(inputRef => () => {
     if (inputRef.current) {

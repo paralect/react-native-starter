@@ -7,12 +7,12 @@ import MainButton from 'components/mainButton';
 
 import styles from './profileScreen.styles';
 
-const ProfileScreen = () => {
+function ProfileScreen() {
   const dispatch = useDispatch();
 
   const onSignOutPress = useCallback(() => {
     dispatch(userActions.signOut());
-  }, []);
+  }, [dispatch]);
 
   return (
     <View style={styles.screen}>
@@ -23,6 +23,6 @@ const ProfileScreen = () => {
       />
     </View>
   );
-};
+}
 
 export default ProfileScreen;

@@ -8,11 +8,13 @@ import configureStore from './resources/store';
 
 const { store } = configureStore();
 
-const App = () => (
-  <Provider store={store}>
-    <AppNavigation />
-    <ConnectionError />
-  </Provider>
-);
+function App() {
+  return (
+    <Provider store={store}>
+      <AppNavigation />
+      <ConnectionError />
+    </Provider>
+  );
+}
 
 export default App;

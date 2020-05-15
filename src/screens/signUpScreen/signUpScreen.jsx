@@ -14,7 +14,7 @@ import MainButton from 'components/mainButton';
 
 import styles from './signUpScreen.styles';
 
-const SignUpScreen = ({ navigation }) => {
+function SignUpScreen({ navigation }) {
   const dispatch = useDispatch();
 
   const [signupToken, setSignupToken] = useState(null);
@@ -27,7 +27,7 @@ const SignUpScreen = ({ navigation }) => {
     try {
       const userData = {
         firstName: values.firstName,
-        lastName : values.lastName,
+        lastName: values.lastName,
         email: values.email,
         password: values.password,
       };
@@ -41,7 +41,7 @@ const SignUpScreen = ({ navigation }) => {
       };
       throw error;
     }
-  }, []);
+  }, [dispatch]);
 
   const validateForm = useCallback((values) => {
     const validationErrors = {
@@ -55,17 +55,17 @@ const SignUpScreen = ({ navigation }) => {
       }, 'confirmPassword'),
     };
     return validationErrors;
-  });
+  }, []);
 
   const [form, onChange, onSubmit, setFocus] = useForm({}, onSignUp, validateForm);
 
   const onVerifyEmailDevPress = useCallback(() => {
     userActions.verifyEmailDev(signupToken);
-  }, []);
+  }, [signupToken]);
 
   const onSignIn = useCallback(() => {
     navigation.navigate('SignIn');
-  }, []);
+  }, [navigation]);
 
   return (
     <View style={styles.container}>

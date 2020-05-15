@@ -41,6 +41,27 @@ const tabBarOptions = {
   },
 };
 
+const tabs = [
+  {
+    title: 'Home',
+    component: HomeScreen,
+    tabIcon: images.home,
+    activeTabIcon: images.homeActive,
+  },
+  {
+    title: 'Contacts',
+    component: ContactsScreen,
+    tabIcon: images.contacts,
+    activeTabIcon: images.contactsActive,
+  },
+  {
+    title: 'Profile',
+    component: ProfileScreen,
+    tabIcon: images.profile,
+    activeTabIcon: images.profileActive,
+  },
+];
+
 const AppNavigation = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -53,11 +74,11 @@ const AppNavigation = () => {
     if (token) {
       dispatch({ type: USER_AUTHENTICATED });
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     getToken();
-  }, []);
+  }, [getToken]);
 
   if (isLoading) {
     return (
@@ -70,31 +91,21 @@ const AppNavigation = () => {
       {userAuthenticated
         ? (
           <Tab.Navigator initialRouteName="Home" tabBarOptions={tabBarOptions}>
-            <Tab.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{
-                tabBarIcon: ({ focused }) => <TabIcon source={focused ? images.homeActive : images.home} />
-              }}
-            />
-            <Tab.Screen
-              name="Contacts"
-              component={ContactsScreen}
-              options={{
-                tabBarIcon: ({ focused }) => <TabIcon source={focused ? images.contactActive : images.contact} />
-              }}
-            />
-            <Tab.Screen
-              name="Profile"
-              component={ProfileScreen}
-              options={{
-                tabBarIcon: ({ focused }) => <TabIcon source={focused ? images.profileActive : images.profile} />
-              }}
-            />
+            {tabs.map(tab => (
+              <Tab.Screen
+                name={tab.title}
+                component={tab.component}
+                options={{
+                  tabBarIcon: icon => (
+                    <TabIcon source={icon.focused ? tab.activeTabIcon : tab.tabIcon} />
+                  ),
+                }}
+              />
+            ))}
           </Tab.Navigator>
         )
         : (
-          <Stack.Navigator headerMode='none'>
+          <Stack.Navigator headerMode="none">
             <Stack.Screen name="SignIn" component={SignInScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
           </Stack.Navigator>
