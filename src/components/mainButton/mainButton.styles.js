@@ -1,20 +1,21 @@
 import { StyleSheet } from 'react-native';
 
 import colors from 'themes/colors';
+import fonts from 'themes/fonts';
 
 export default StyleSheet.create({
   button: {
     width: '100%',
-    height: 48,
-    backgroundColor: colors.purple,
-    marginVertical: 10,
+    height: 46,
+    backgroundColor: colors.mainTheme,
+    marginBottom: 8,
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
     color: colors.white,
-    fontSize: 16,
-    textTransform: 'uppercase',
+    fontWeight: fonts.weight.semiBold,
+    fontSize: fonts.size.subtitle,
   },
 });

@@ -4,12 +4,15 @@ const colors = {
   yellow: '#F7C45D',
   gray: '#D8D8D8',
   red: '#E43B30',
-  purple: '#A682DE',
-  darkPurple: '#865fc3',
-  border: '#D8D8D8',
-  activeFont: '#EAAB00',
+
+  mainTheme: '#147DFA',
+  border: '#B5C1CF',
   error: '#eb4b5f',
+
   font: '#777777',
+  fontLogo: '#009BCA',
+  fontTitle: '#4B5363',
+  fontText: '#69768C',
 };
 
 export default colors;

@@ -1,23 +1,34 @@
 import { StyleSheet } from 'react-native';
 import colors from 'themes/colors';
+import fonts from 'themes/fonts';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 25,
+    alignItems: 'center',
+    paddingHorizontal: 44,
+  },
+  logo: {
+    marginBottom: 8,
+  },
+  logoText: {
+    marginBottom: 60,
+    color: colors.fontLogo,
+    fontSize: 18,
+    fontWeight: '500',
   },
   title: {
-    color: '#72787c',
-    fontSize: 18,
+    ...fonts.style.title,
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 24,
   },
   link: {
-    color: colors.darkPurple,
+    color: colors.mainTheme,
   },
   signupContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    width: '100%',
+    paddingLeft: 8,
   },
 });
