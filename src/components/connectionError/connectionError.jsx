@@ -1,7 +1,9 @@
 import React, { useEffect, useState, memo } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import PropTypes from 'prop-types';
+
+import Text from 'components/text';
 
 import i18n from 'i18n';
 import styles from './connectionError.styles';

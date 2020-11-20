@@ -1,6 +1,6 @@
 import React, { useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Text, View } from 'react-native';
+import { View, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import i18n from 'i18n';
@@ -10,8 +10,10 @@ import useForm from 'hooks/useForm';
 import * as userActions from 'resources/user/user.actions';
 
 import Input from 'components/input';
+import Text from 'components/text';
 import MainButton from 'components/mainButton';
 
+import images from 'themes/images';
 import styles from './signInScreen.styles';
 
 function SignInScreen({ navigation }) {
@@ -47,6 +49,12 @@ function SignInScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={images.logo}
+        style={styles.logo}
+        resizeMode="contain"
+      />
+      <Text style={styles.logoText}>React Native starter</Text>
       <Text style={styles.title}>{i18n.t('signInScreen.title')}</Text>
       <Input
         value={form.values.email}

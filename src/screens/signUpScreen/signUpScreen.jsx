@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import React, { useState, useRef, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -10,6 +10,7 @@ import useForm from 'hooks/useForm';
 import * as userActions from 'resources/user/user.actions';
 
 import Input from 'components/input';
+import Text from 'components/text';
 import MainButton from 'components/mainButton';
 
 import styles from './signUpScreen.styles';

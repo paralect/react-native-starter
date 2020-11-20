@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { TextInput, Text, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import getKeyboardType from 'helpers/getKeyboardType';
+
+import Text from 'components/text';
 
 import styles from './input.styles';
 

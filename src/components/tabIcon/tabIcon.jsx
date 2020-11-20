@@ -15,7 +15,7 @@ function TabIcon({ source }) {
 }
 
 TabIcon.propTypes = {
-  source: PropTypes.string.isRequired,
+  source: PropTypes.number.isRequired,
 };
 
 export default TabIcon;

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -20,7 +19,6 @@ import * as userSelectors from 'resources/user/user.selectors';
 import { getItem } from 'helpers/storage';
 import config from 'resources/config';
 
-import colors from 'themes/colors';
 import images from 'themes/images';
 
 const prefix = `${config.applicationId}://`;
@@ -30,31 +28,25 @@ const Stack = createStackNavigator();
 
 const tabBarOptions = {
   keyboardHidesTabBar: true,
-  labelStyle: {
-    fontSize: 13,
-  },
-  activeTintColor: colors.darkPurple,
-  style: {
-    paddingVertical: 5,
-    borderTopColor: colors.border,
-    borderTopWidth: StyleSheet.hairlineWidth,
-  },
 };
 
 const tabs = [
   {
+    id: 1,
     title: 'Home',
     component: HomeScreen,
     tabIcon: images.home,
     activeTabIcon: images.homeActive,
   },
   {
+    id: 2,
     title: 'Contacts',
     component: ContactsScreen,
     tabIcon: images.contacts,
     activeTabIcon: images.contactsActive,
   },
   {
+    id: 3,
     title: 'Profile',
     component: ProfileScreen,
     tabIcon: images.profile,
@@ -93,6 +85,7 @@ const AppNavigation = () => {
           <Tab.Navigator initialRouteName="Home" tabBarOptions={tabBarOptions}>
             {tabs.map(tab => (
               <Tab.Screen
+                key={tab.id}
                 name={tab.title}
                 component={tab.component}
                 options={{
